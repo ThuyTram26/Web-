@@ -1,45 +1,42 @@
-<?php 
-	if(!isset($bien_bao_mat)){exit();}
-?>
-<?php require_once("includes/dbconnect.php");?>
-<?php 
-	//$id=$_GET['id'];
-	//$tv="SELECT * FROM thongtin WHERE id='$id'";
-	//$tv_1=$mysqli->query($tv);
-	//$tv_2=mysqli_fetch_array($tv_1);
-   // $link_dong="?thamso=quan_ly_thong_tin=";
-    
+<?php require_once("./dbconnect.php"); ?>
+<?php
+//$id=$_GET['id'];
+//$tv="SELECT * FROM thongtin WHERE id='$id'";
+//$tv_1=$mysqli->query($tv);
+//$tv_2=mysqli_fetch_array($tv_1);
+// $link_dong="?thamso=quan_ly_thong_tin=";
 
-    // Nếu người dùng đã bấm SAVE
-     if(isset($_POST['btn_submit'])) {
-   
 
-      $ten = $_POST['ten'];
-      //$ten=str_replace("'","&#39;",$ten);		
+// Nếu người dùng đã bấm SAVE
+if (isset($_POST['btn_submit'])) {
 
-      $bday= $_POST['bday'];
-     // $bday=str_replace("'","&#39;",$bday);
 
-      $gender= $_POST['gender'] ;
-     // $gender=str_replace("'","&#39;",$gender);
+  $ten = $_POST['ten'];
+  //$ten=str_replace("'","&#39;",$ten);		
 
-      $sdt= $_POST['sdt'] ;
-     // $sdt=str_replace("'","&#39;",$sdt);
+  $bday = $_POST['bday'];
+  // $bday=str_replace("'","&#39;",$bday);
 
-      $fb= $_POST['fb'] ;
-     // $fb=str_replace("'","&#39;",$fb);
+  $gender = $_POST['gender'];
+  // $gender=str_replace("'","&#39;",$gender);
 
-      $zl= $_POST['zl'] ;
-     // $zl=str_replace("'","&#39;",$zl);
+  $sdt = $_POST['sdt'];
+  // $sdt=str_replace("'","&#39;",$sdt);
 
-      $email= _POST['email'] ;
-     // $email=str_replace("'","&#39;",$email);
+  $fb = $_POST['fb'];
+  // $fb=str_replace("'","&#39;",$fb);
 
-      $cty= $_POST['cty'] ;
-     // $cty=str_replace("'","&#39;",$cty);
+  $zl = $_POST['zl'];
+  // $zl=str_replace("'","&#39;",$zl);
 
-   $id = $_POST["id"];
- $sql= "UPDATE thongtin  SET 
+  $email = $_POST['email'];
+  // $email=str_replace("'","&#39;",$email);
+
+  $cty = $_POST['cty'];
+  // $cty=str_replace("'","&#39;",$cty);
+
+  $id = $_POST["id"];
+  $sql = "UPDATE thongtin  SET 
  ten='$ten',
  bday='$bday',
  gender='$gender',
@@ -49,76 +46,77 @@
  email='$email',
  cty='$cty'
  WHERE id=$id";
-   mysqli_query($conn, $sql);
+  mysqli_query($mysqli, $sql);
 
-             $conn->close();
-      //	header('Location: login.php');   
-     }
-     $id = -1;
-	if (isset($_GET['id'])) {
-		$id = $_GET['id'];
-	}
-	$sql = "SELECT * FROM thongtin WHERE id = ".$id;
-	$query = mysqli_query($conn,$sql);
-        ?>
-<?php
-  while ( $data = mysqli_fetch_array($query) ) {
+  $mysqli->close();
+  //	header('Location: login.php');   
+}
+$id = -1;
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+}
+$sql = "SELECT * FROM thongtin WHERE id = " . $id;
+$query = mysqli_query($mysqli, $sql);
 ?>
-<div>
-            <form action="" method="POST" class="form">
-            <input type="hidden" name="id" value="<?php echo $id ?>">
-            <a href="<?php echo $link_dong; ?>" class="lk_a1" style="margin-right:30px" >Đóng</a>
-                <h2>Thông tin Cựu Sinh Viên</h2>
-		<table>	
-			<tr>
-				<td>Họ và tên :</td>
-				<td><input type="text" name="ten" value="<?php echo $ten; ?>"></td>
-			</tr>
-			<tr>
-				<td>Ngày sinh :</td>
-				<td><input type="date" id="bday" name="bday" value="<?php echo $bday; ?>"></td>
-			</tr>
-			<tr>
-			<td>Giới tính :</td>
-				<td><input type="radio" value="Nam" name="gender" id="gender" value="<?php echo $gender; ?>">
-                <label for="Nam">Nam</label>
-            
-                <input type="radio" value="Nữ" name="gender" id="gender" value="<?php echo $gender; ?>">
-                <label for="Nữ">Nữ</label>
-            </td>
-			</tr>
-			<tr>
-				<td>Số điện thoại :</td>
-				<td><input type="text" id="sdt" name="sdt" value="<?php echo $sdt; ?>"></td>
-			</tr>
-            <tr>
-				<td>Facebook :</td>
-				<td><input type="text" id="fb" name="fb" value="<?php echo $fb; ?>"></td>
-			</tr>
-            <tr>
-				<td>Zalo :</td>
-				<td><input type="text" id="zl" name="zl" value="<?php echo $zl; ?>"></td>
-			</tr>
-            <tr>
-				<td>Email :</td>
-				<td><input type="text" id="email" name="email" value="<?php echo $email; ?>"></td>
-			</tr>
-            <tr>
-				<td>Tên Công ty :</td>
-				<td><input type="text" id="cty" name="cty" value="<?php echo $cty; ?>"></td>
-			</tr>
-			<tr>
-                <td>&nbsp;</td>
-				<td colspan="2" align="center"><input type="submit" name="sua_thong_tin" value="Sửa thông tin"></td>
-			</tr>
+<?php
+while ($data = mysqli_fetch_array($query)) {
+?>
+  <div>
+    <form action="" method="POST" class="form">
+      <input type="hidden" name="id" value="<?php echo $id ?>">
+      <a href="./thongtin.php" class="lk_a1" style="margin-right:30px">Đóng</a>
+      <h2>Thông tin Cựu Sinh Viên</h2>
+      <table>
+        <tr>
 
-		</table>
-		
-	</form>
-    <?php } ?>
-</div>
-    
-    <?php /*
+          <td>Họ và tên :</td>
+          <td><input type="text" name="ten" value="<?php echo $data['ten'] ?>"></td>
+        </tr>
+        <tr>
+          <td>Ngày sinh :</td>
+          <td><input type="date" id="bday" name="bday" value="<?php $data['bday'] ?>"></td>
+        </tr>
+        <tr>
+          <td>Giới tính :</td>
+          <td><input type="radio" value="Nam" name="gender" id="gender" value="<?php echo $data['gender']; ?>">
+            <label for="Nam">Nam</label>
+
+            <input type="radio" value="Nữ" name="gender" id="gender" value="<?php echo $data['gender']; ?>">
+            <label for="Nữ">Nữ</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Số điện thoại :</td>
+          <td><input type="text" id="sdt" name="sdt" value="<?php echo $data['sdt']; ?>"></td>
+        </tr>
+        <tr>
+          <td>Facebook :</td>
+          <td><input type="text" id="fb" name="fb" value="<?php echo $data['fb']; ?>"></td>
+        </tr>
+        <tr>
+          <td>Zalo :</td>
+          <td><input type="text" id="zl" name="zl" value="<?php echo $data['zl']; ?>"></td>
+        </tr>
+        <tr>
+          <td>Email :</td>
+          <td><input type="text" id="email" name="email" value="<?php echo $data['email']; ?>"></td>
+        </tr>
+        <tr>
+          <td>Tên Công ty :</td>
+          <td><input type="text" id="cty" name="cty" value="<?php echo $data['cty']; ?>"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="2" align="center"><input type="submit" name="sua_thong_tin" value="Sửa thông tin"></td>
+        </tr>
+
+      </table>
+
+    </form>
+  <?php } ?>
+  </div>
+
+  <?php /*
 
          // Nếu người dùng đã bấm SAVE
           if(isset($_POST['btn_submit'])) {
@@ -166,5 +164,4 @@
      
                   $conn->close();
            //	header('Location: login.php');   */
-             ?>
-
+  ?>
