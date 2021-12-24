@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 24, 2021 lúc 02:01 PM
--- Phiên bản máy phục vụ: 10.3.16-MariaDB
--- Phiên bản PHP: 7.3.6
+-- Thời gian đã tạo: Th12 24, 2021 lúc 03:25 PM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `data`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `quan_tri`
+--
+
+CREATE TABLE `quan_tri` (
+  `id` int(11) NOT NULL,
+  `username` text COLLATE utf8_unicode_ci NOT NULL,
+  `password` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quan_tri`
+--
+
+INSERT INTO `quan_tri` (`id`, `username`, `password`) VALUES
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e'),
+(2, 'admin1', '123456'),
+(3, 'admin2', '(123)'),
+(4, 'admin4', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -45,7 +66,6 @@ CREATE TABLE `thongtin` (
 --
 
 INSERT INTO `thongtin` (`id`, `ten`, `bday`, `gender`, `sdt`, `fb`, `zl`, `email`, `cty`) VALUES
-(19, 'Nguyễn Văn A', '2021-09-27', 'Nam', '1231232', 'A A', '1331222', 'aaa@gmail.com', 'Dương Phát'),
 (20, 'Tran Thi E', '2021-11-07', 'Nữ', '5486887', 'CCC', '14534', 'abc@gmail.com', 'ATB'),
 (36, 'Trần Thanh Như', '2021-12-10', 'Nữ', '34234234', 'Như Như', '23424324', 'nhu987@gmail.com', 'Song Phú'),
 (38, 'Nguyễn Công Phượng', '2021-12-11', 'Nam', '1231232', 'BB', '14534', 'aaa@gmail.com', 'ATB'),
@@ -68,12 +88,17 @@ INSERT INTO `thongtin` (`id`, `ten`, `bday`, `gender`, `sdt`, `fb`, `zl`, `email
 (140, 'Trương Gia Bảo', '2021-12-02', 'Nam', '00833744', 'BB', '23424324', 'abc@gmail.com', 'ATB'),
 (143, 'Trương Gia Bảo', '2021-12-02', 'Nam', '00833744', 'BB', '23424324', 'abc@gmail.com', 'ATB'),
 (145, 'Thạch Thị Hồng', '2021-12-12', 'Nữ', '3213213', 'BB', '1331222', 'abc@gmail.com', 'Song Phú'),
-(146, '', '', '', '', '', '', '', ''),
-(147, '', '', '', '', '', '', '', '');
+(151, 'Tuyến', '2021-12-02', 'Nam', '123456', 'asasasas', 'asasasas', 'admin@gmail.com', 'asdasdasd');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `quan_tri`
+--
+ALTER TABLE `quan_tri`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `thongtin`
@@ -86,10 +111,16 @@ ALTER TABLE `thongtin`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `quan_tri`
+--
+ALTER TABLE `quan_tri`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `thongtin`
 --
 ALTER TABLE `thongtin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
