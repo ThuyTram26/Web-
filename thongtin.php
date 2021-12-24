@@ -8,8 +8,10 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="ie-edge" charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
   <title>Thông tin Cựu Sinh Viên</title>
-
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -43,10 +45,9 @@ session_start();
   <div class="container">
 
     <form id="s" action="" method="GET">
-      <input type="text" name="search" value="" />
-      <input type="submit" value="Tìm kiếm" />
 
-      <table class="table">
+
+      <table class="table" id="myTable">
         <thead>
           <tr>
             <th scope="col">Họ và tên</th>
@@ -75,10 +76,10 @@ session_start();
               <td><?php echo $thongtin['zl']; ?></td>
               <td><?php echo $thongtin['email']; ?></td>
               <td><?php echo $thongtin['cty']; ?></td>
-              <td>
-                <a href="sua_thong_tin.php?id=<?php echo $id; ?>">Sửa thông tin</a>
+              <td style="display: flex; justify-content:space-around">
+                <a href="sua_thong_tin.php?id=<?php echo $id; ?>"><i class="bi bi-pencil-square"></i> </a>
                 <br>
-                <a href="xoa_thong_tin.php?id_delete=<?php echo $id; ?>" onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa thông tin</a>
+                <a href="xoa_thong_tin.php?id_delete=<?php echo $id; ?>" onclick="return confirm('Bạn có chắc muốn xóa?');"><i class="bi bi-trash"></i></a>
               </td>
             </tr>
 
@@ -92,5 +93,11 @@ session_start();
       </table>
   </div>
 </body>
+<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#myTable').DataTable();
+  });
+</script>
 
 </html>
